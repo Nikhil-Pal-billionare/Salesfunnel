@@ -8,542 +8,115 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --bg: #0d0d18;
-  --card: #13131f;
-  --border: rgba(255,255,255,0.08);
-  --purple: #a855f7;
-  --cyan: #22d3ee;
-  --gold: #fbbf24;
-  --green: #34d399;
-  --white: #ffffff;
-  --muted: #94a3b8;
+  --bg: #0d0d18; --card: #13131f; --border: rgba(255,255,255,0.08);
+  --purple: #a855f7; --cyan: #22d3ee; --gold: #fbbf24; --green: #34d399;
+  --white: #ffffff; --muted: #94a3b8;
 }
-
-html, body {
-  background: var(--bg);
-  color: var(--white);
-  font-family: 'Inter', sans-serif;
-  line-height: 1.5;
-  overflow-x: hidden;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-/* ---- TOP ANNOUNCEMENT ---- */
-.topbar {
-  background: linear-gradient(90deg, #7c3aed, #0891b2);
-  text-align: center;
-  padding: 0.55rem 1rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  color: #fff;
-}
-
-/* ---- BADGE ---- */
-.badge-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 2rem 1.2rem 1.2rem;
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.04);
-  padding: 0.45rem 1.1rem;
-  border-radius: 99px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #e2e8f0;
-  text-transform: uppercase;
-}
-.badge-dot {
-  width: 8px; height: 8px;
-  background: var(--green);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--green);
-  animation: blink 2s ease-in-out infinite;
-  flex-shrink: 0;
-}
+html, body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; line-height: 1.5; overflow-x: hidden; max-width: 480px; margin: 0 auto; }
+.topbar { background: linear-gradient(90deg, #7c3aed, #0891b2); text-align: center; padding: 0.55rem 1rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.03em; color: #fff; }
+.badge-wrap { display: flex; justify-content: center; padding: 2rem 1.2rem 1.2rem; }
+.badge { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); padding: 0.45rem 1.1rem; border-radius: 99px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; color: #e2e8f0; text-transform: uppercase; }
+.badge-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 8px var(--green); animation: blink 2s ease-in-out infinite; flex-shrink: 0; }
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.25;} }
-
-/* ---- HEADLINE ---- */
-.headline-wrap {
-  padding: 0 1.2rem 1.2rem;
-  text-align: center;
-}
-.headline {
-  font-size: clamp(1.75rem, 7.5vw, 2.2rem);
-  font-weight: 900;
-  line-height: 1.13;
-  letter-spacing: -0.01em;
-}
-.hw { color: var(--white); }
-.hc { color: var(--cyan); }
-.hp { color: var(--purple); }
-.hg { color: var(--gold); }
-
-/* ---- SUBTEXT ---- */
-.subtext-wrap {
-  padding: 0 1.4rem 1.8rem;
-  text-align: center;
-}
-.subtext {
-  font-size: 0.93rem;
-  color: #94a3b8;
-  line-height: 1.7;
-}
+.headline-wrap { padding: 0 1.2rem 1.2rem; text-align: center; }
+.headline { font-size: clamp(1.75rem, 7.5vw, 2.2rem); font-weight: 900; line-height: 1.13; letter-spacing: -0.01em; }
+.hw { color: var(--white); } .hc { color: var(--cyan); } .hp { color: var(--purple); } .hg { color: var(--gold); }
+.subtext-wrap { padding: 0 1.4rem 1.8rem; text-align: center; }
+.subtext { font-size: 0.93rem; color: #94a3b8; line-height: 1.7; }
 .subtext strong { color: #e2e8f0; font-weight: 700; }
-
-/* ---- VIDEO BOX ---- */
-.video-wrap {
-  padding: 0 1rem;
-  margin-bottom: 0;
-}
-.video-outer {
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: #000;
-  position: relative;
-  box-shadow: 0 8px 40px rgba(124,58,237,0.25);
-}
-.video-outer iframe {
-  width: 100%;
-  aspect-ratio: 16/9;
-  display: block;
-  border: none;
-}
-
-/* Video custom thumbnail overlay (shows before play) */
-.video-thumb {
-  position: absolute;
-  inset: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  border-radius: 14px;
-  overflow: hidden;
-}
-/* YOUR PHOTO goes here as background */
-.video-thumb-bg {
-  position: absolute;
-  inset: 0;
-  /*
-    ====================================================
-    APNI PHOTO YAHAN LAGAO:
-    background-image: url('YOUR_PHOTO_URL_HERE');
-    ====================================================
-  */
-  background: linear-gradient(160deg, #1a0533 0%, #0a1a2e 50%, #0d0d18 100%);
-  background-size: cover;
-  background-position: center top;
-  filter: brightness(0.75);
-}
-.video-thumb-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
-}
-.video-thumb-title {
-  position: absolute;
-  top: 14px; left: 14px; right: 14px;
-  background: rgba(245,158,11,0.9);
-  color: #000;
-  font-size: 0.78rem;
-  font-weight: 800;
-  padding: 0.35rem 0.8rem;
-  border-radius: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.video-thumb-sub {
-  position: absolute;
-  bottom: 14px; left: 14px; right: 14px;
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: #fff;
-  line-height: 1.3;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
-}
-.play-btn {
-  width: 64px; height: 64px;
-  background: rgba(255,255,255,0.95);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 0 12px rgba(255,255,255,0.15);
-  position: relative;
-  z-index: 3;
-  transition: transform 0.15s;
-}
+.video-wrap { padding: 0 1rem; margin-bottom: 0; }
+.video-outer { border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #000; position: relative; box-shadow: 0 8px 40px rgba(124,58,237,0.25); }
+.video-outer video { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+.video-thumb { position: absolute; inset: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; border-radius: 14px; overflow: hidden; }
+.video-thumb-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #1a0533 0%, #0a1a2e 50%, #0d0d18 100%); background-size: cover; background-position: center top; filter: brightness(0.75); }
+.video-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); }
+.video-thumb-title { position: absolute; top: 14px; left: 14px; right: 14px; background: rgba(245,158,11,0.9); color: #000; font-size: 0.78rem; font-weight: 800; padding: 0.35rem 0.8rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+.video-thumb-sub { position: absolute; bottom: 14px; left: 14px; right: 14px; font-size: 1.1rem; font-weight: 900; color: #fff; line-height: 1.3; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+.play-btn { width: 64px; height: 64px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 12px rgba(255,255,255,0.15); position: relative; z-index: 3; transition: transform 0.15s; }
 .play-btn:hover { transform: scale(1.08); }
 .play-btn svg { width: 24px; height: 24px; margin-left: 4px; }
-
-/* ---- PROGRESS TRACKER ---- */
-.progress-card {
-  margin: 0.7rem 1rem 0;
-  background: #1a1a2e;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 1rem 1.1rem;
-}
-.progress-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.6rem;
-}
+/* DISCOUNT BANNER */
+.discount-banner { margin: 0.8rem 1rem 0; background: linear-gradient(135deg, #065f46, #064e3b); border: 1.5px solid #34d399; border-radius: 12px; padding: 1.1rem 1.2rem; text-align: center; display: none; animation: slideDown 0.4s ease; }
+@keyframes slideDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+.discount-emoji { font-size: 1.8rem; display: block; margin-bottom: 0.3rem; }
+.discount-headline { font-size: 1.1rem; font-weight: 800; color: #34d399; margin-bottom: 0.25rem; }
+.discount-sub { font-size: 0.85rem; color: #a7f3d0; }
+.discount-sub strong { color: #fff; }
+.discount-sub s { color: #6b7280; }
+/* PROGRESS */
+.progress-card { margin: 0.7rem 1rem 0; background: #1a1a2e; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem 1.1rem; }
+.progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
 .progress-label { font-size: 0.85rem; font-weight: 600; color: #e2e8f0; }
 .progress-time { font-size: 0.85rem; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
-.progress-bar-bg {
-  background: rgba(255,255,255,0.08);
-  border-radius: 99px;
-  height: 8px;
-  overflow: hidden;
-  margin-bottom: 0.5rem;
-}
-.progress-bar-fill {
-  height: 100%;
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--purple), var(--cyan));
-  width: 0.8%;
-  transition: width 0.3s;
-}
-.progress-pct-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.7rem;
-}
+.progress-bar-bg { background: rgba(255,255,255,0.08); border-radius: 99px; height: 8px; overflow: hidden; margin-bottom: 0.5rem; }
+.progress-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--purple), var(--cyan)); width: 0%; transition: width 0.3s; }
+.progress-pct-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.7rem; }
 .progress-pct { font-size: 0.8rem; color: var(--muted); }
 .progress-left { font-size: 0.8rem; color: var(--muted); }
-.progress-lock {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding-top: 0.6rem;
-}
-.progress-lock .lock-icon { font-size: 1rem; }
-
-/* ---- BONUSES SECTION (locked by default) ---- */
-.bonuses-section {
-  padding: 1.4rem 1rem 0.5rem;
-}
-.bonuses-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
+.progress-lock { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.6rem; }
+/* BONUSES */
+.bonuses-section { padding: 1.4rem 1rem 0.5rem; }
+.bonuses-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
 .bonuses-title { font-size: 0.9rem; font-weight: 700; }
-.bonuses-badge {
-  background: rgba(245,158,11,0.15);
-  border: 1px solid rgba(245,158,11,0.3);
-  color: var(--gold);
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.bonus-item {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 10px;
-  padding: 0.9rem 1rem;
-  margin-bottom: 0.6rem;
-  position: relative;
-  overflow: hidden;
-}
-.bonus-item.locked { opacity: 0.45; filter: blur(0.5px); }
+.bonuses-badge { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); color: var(--gold); font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+.bonus-item { display: flex; align-items: center; gap: 0.7rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 0.9rem 1rem; margin-bottom: 0.6rem; }
 .bonus-icon { font-size: 1.6rem; flex-shrink: 0; }
 .bonus-text { flex: 1; }
 .bonus-name { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.15rem; }
 .bonus-desc { font-size: 0.75rem; color: var(--muted); }
-.bonus-value {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--gold);
-  white-space: nowrap;
-}
-.bonus-lock-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 1rem;
-  pointer-events: none;
-}
-.lock-badge {
-  background: rgba(0,0,0,0.5);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.72rem;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-/* ---- DIVIDER ---- */
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-  margin: 1.5rem 1rem;
-}
-
-/* ---- BUY SECTION ---- */
-.buy-section {
-  padding: 0.5rem 1rem 1.5rem;
-}
-.buy-eyebrow {
-  text-align: center;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 0.5rem;
-}
-.buy-title {
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: 800;
-  margin-bottom: 0.3rem;
-}
-.buy-sub {
-  text-align: center;
-  font-size: 0.82rem;
-  color: var(--muted);
-  margin-bottom: 1.2rem;
-}
-.price-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 0.8rem;
-  margin-bottom: 1.2rem;
-}
-.price-old {
-  font-size: 1.1rem;
-  color: var(--muted);
-  text-decoration: line-through;
-}
-.price-new {
-  font-size: 2.4rem;
-  font-weight: 900;
-  color: var(--gold);
-  line-height: 1;
-}
-.price-save {
-  background: rgba(52,211,153,0.15);
-  border: 1px solid rgba(52,211,153,0.3);
-  color: var(--green);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
-}
-.btn-buy {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 1.05rem;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 800;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 4px 24px rgba(124,58,237,0.45);
-  transition: transform 0.15s, box-shadow 0.15s;
-  letter-spacing: 0.01em;
-}
+.bonus-value { font-size: 0.75rem; font-weight: 800; color: var(--gold); white-space: nowrap; }
+.section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent); margin: 1.5rem 1rem; }
+/* BUY */
+.buy-section { padding: 0.5rem 1rem 1.5rem; }
+.buy-eyebrow { text-align: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
+.buy-title { text-align: center; font-size: 1.2rem; font-weight: 800; margin-bottom: 0.3rem; }
+.buy-sub { text-align: center; font-size: 0.82rem; color: var(--muted); margin-bottom: 1.2rem; }
+.price-row { display: flex; align-items: baseline; justify-content: center; gap: 0.8rem; margin-bottom: 1.2rem; }
+.price-old { font-size: 1.1rem; color: var(--muted); text-decoration: line-through; }
+.price-new { font-size: 2.4rem; font-weight: 900; color: var(--gold); line-height: 1; }
+.price-save { background: rgba(52,211,153,0.15); border: 1px solid rgba(52,211,153,0.3); color: var(--green); font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 6px; }
+.btn-buy { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 1.05rem; border-radius: 12px; background: linear-gradient(135deg, #7c3aed 0%, #9333ea 100%); color: #fff; font-size: 1rem; font-weight: 800; border: none; cursor: pointer; text-decoration: none; box-shadow: 0 4px 24px rgba(124,58,237,0.45); transition: transform 0.15s, box-shadow 0.15s; letter-spacing: 0.01em; }
 .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 6px 32px rgba(124,58,237,0.55); }
-.btn-micro {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.7rem;
-  flex-wrap: wrap;
-}
-.bm-item {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.72rem;
-  color: var(--muted);
-}
-
-/* ---- WHAT YOU GET ---- */
-.includes-section {
-  padding: 0 1rem 1.5rem;
-}
-.inc-header {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--purple);
-  margin-bottom: 0.8rem;
-}
+.btn-micro { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 0.7rem; flex-wrap: wrap; }
+.bm-item { display: flex; align-items: center; gap: 0.3rem; font-size: 0.72rem; color: var(--muted); }
+.includes-section { padding: 0 1rem 1.5rem; }
+.inc-header { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple); margin-bottom: 0.8rem; }
 .inc-list { display: flex; flex-direction: column; gap: 0.5rem; }
-.inc-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  font-size: 0.87rem;
-  color: #cbd5e1;
-  line-height: 1.4;
-}
-.inc-check {
-  width: 18px; height: 18px;
-  background: rgba(52,211,153,0.12);
-  border: 1px solid rgba(52,211,153,0.35);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.6rem;
-  color: var(--green);
-  flex-shrink: 0;
-  margin-top: 0.1rem;
-}
-
-/* ---- HOW IT WORKS ---- */
-.how-section {
-  padding: 0 1rem 1.8rem;
-}
-.how-title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  margin-bottom: 0.9rem;
-  display: flex; align-items: center; gap: 0.5rem;
-}
+.inc-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.87rem; color: #cbd5e1; line-height: 1.4; }
+.inc-check { width: 18px; height: 18px; background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.35); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; color: var(--green); flex-shrink: 0; margin-top: 0.1rem; }
+.how-section { padding: 0 1rem 1.8rem; }
+.how-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
 .how-steps { display: flex; flex-direction: column; gap: 0; }
-.how-step {
-  display: flex;
-  gap: 0.9rem;
-  align-items: flex-start;
-  position: relative;
-}
-.how-step:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  left: 14px; top: 30px;
-  width: 2px; bottom: 0;
-  background: linear-gradient(180deg, rgba(124,58,237,0.4), transparent);
-}
-.how-num {
-  width: 28px; height: 28px;
-  background: rgba(124,58,237,0.15);
-  border: 1px solid rgba(124,58,237,0.4);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--purple);
-  flex-shrink: 0;
-}
+.how-step { display: flex; gap: 0.9rem; align-items: flex-start; position: relative; }
+.how-step:not(:last-child)::after { content: ''; position: absolute; left: 14px; top: 30px; width: 2px; bottom: 0; background: linear-gradient(180deg, rgba(124,58,237,0.4), transparent); }
+.how-num { width: 28px; height: 28px; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 800; color: var(--purple); flex-shrink: 0; }
 .how-text { padding-bottom: 1.2rem; }
 .how-step-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.15rem; }
 .how-step-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
-
-/* ---- TESTIMONIALS ---- */
-.testi-section {
-  padding: 0 1rem 1.8rem;
-}
+.testi-section { padding: 0 1rem 1.8rem; }
 .testi-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.9rem; }
-.testi-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 0.7rem;
-}
+.testi-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1rem; margin-bottom: 0.7rem; }
 .t-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
 .t-text { font-size: 0.83rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 0.8rem; }
 .t-author { display: flex; align-items: center; gap: 0.6rem; }
-.t-av {
-  width: 30px; height: 30px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--purple), var(--cyan));
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 0.7rem; flex-shrink: 0;
-}
+.t-av { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--purple), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.7rem; flex-shrink: 0; }
 .t-name { font-size: 0.82rem; font-weight: 700; }
 .t-meta { font-size: 0.7rem; color: var(--muted); }
-
-/* ---- FAQ ---- */
 .faq-section { padding: 0 1rem 1.8rem; }
 .faq-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.9rem; }
 .faq-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
-.faq-q {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 0.85rem 0;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  user-select: none;
-}
+.faq-q { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; padding: 0.85rem 0; font-size: 0.85rem; font-weight: 600; cursor: pointer; user-select: none; }
 .faq-arr { color: var(--muted); font-size: 1rem; transition: transform 0.2s; flex-shrink: 0; }
 .faq-item.open .faq-arr { transform: rotate(180deg); }
-.faq-a {
-  font-size: 0.8rem;
-  color: var(--muted);
-  line-height: 1.65;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.2s;
-}
+.faq-a { font-size: 0.8rem; color: var(--muted); line-height: 1.65; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.2s; }
 .faq-item.open .faq-a { max-height: 200px; padding-bottom: 0.85rem; }
-
-/* ---- FINAL CTA ---- */
-.final-section {
-  background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(6,182,212,0.08));
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 2rem 1rem;
-  text-align: center;
-}
+.final-section { background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(6,182,212,0.08)); border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem 1rem; text-align: center; }
 .final-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; }
 .final-sub { font-size: 0.83rem; color: var(--muted); margin-bottom: 1.2rem; }
-
-/* ---- FOOTER ---- */
-footer {
-  background: #0a0a12;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 1.4rem 1rem;
-  text-align: center;
-}
+footer { background: #0a0a12; border-top: 1px solid rgba(255,255,255,0.06); padding: 1.4rem 1rem; text-align: center; }
 .footer-logo { font-size: 1rem; font-weight: 800; margin-bottom: 0.6rem; letter-spacing: 0.05em; }
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  margin-bottom: 0.6rem;
-}
+.footer-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
 .footer-links a { font-size: 0.72rem; color: var(--muted); text-decoration: none; }
 .footer-links a:hover { color: var(--white); }
 .footer-copy { font-size: 0.68rem; color: rgba(148,163,184,0.5); }
@@ -551,18 +124,15 @@ footer {
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">&#9889; Limited Offer &mdash; Price Increases Soon</div>
+<div class="topbar">⚡ Limited Offer &mdash; Price Increases Soon</div>
 
-<!-- BADGE -->
 <div class="badge-wrap">
   <div class="badge">
     <span class="badge-dot"></span>
-    How to sell Digital product, Basic to Advance. 
+    How to sell Digital product, Basic to Advance.
   </div>
 </div>
 
-<!-- HEADLINE -->
 <div class="headline-wrap">
   <h1 class="headline">
     <span class="hw">The exact system to </span><span class="hc">EARN MONEY</span>
@@ -572,7 +142,6 @@ footer {
   </h1>
 </div>
 
-<!-- SUBTEXT -->
 <div class="subtext-wrap">
   <p class="subtext">
     Get the <strong>complete AI digital product selling blueprint</strong> delivered instantly. Pay once, access forever.
@@ -582,40 +151,27 @@ footer {
 <!-- VIDEO -->
 <div class="video-wrap">
   <div class="video-outer">
-    <!-- CUSTOM THUMBNAIL (your photo) — click to play -->
     <div class="video-thumb" id="videoThumb" onclick="playVideo()">
-      <div class="video-thumb-bg" id="thumbBg"
-        style="
-          /*
-          =============================================
-          APNI PHOTO YAHAN:
-          background-image: url('YOUR_PHOTO_URL');
-          =============================================
-          */
-          background: linear-gradient(160deg, #1a0533 0%, #0b1e38 60%, #0d0d18 100%);
-        ">
-      </div>
+      <div class="video-thumb-bg" style="background: linear-gradient(160deg, #1a0533 0%, #0b1e38 60%, #0d0d18 100%);"></div>
       <div class="video-thumb-overlay"></div>
-      <div class="video-thumb-title">&#129302; AI Digital Products Selling System</div>
+      <div class="video-thumb-title">🤖 AI Digital Products Selling System</div>
       <div class="play-btn">
         <svg viewBox="0 0 24 24" fill="#7c3aed"><path d="M8 5v14l11-7z"/></svg>
       </div>
-      <div class="video-thumb-sub">How I Sell AI Products<br>&amp; Earn Every Day &#9889;</div>
+      <div class="video-thumb-sub">How I Sell AI Products<br>&amp; Earn Every Day ⚡</div>
     </div>
-    <!-- ACTUAL YOUTUBE EMBED (hidden until click) -->
-    <iframe
-      id="ytIframe"
-      src=""
-      data-src="https://itnpejcxduhaffcejgqr.supabase.co/storage/v1/object/public/Media/VID_20260717_062254_670_bsl.mp4&rel=0&modestbranding=1"
-      title="AI Selling System"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-      style="display:none; width:100%; aspect-ratio:16/9; border:none;">
-    </iframe>
+    <video id="mainVideo" src="https://itnpejcxduhaffcejgqr.supabase.co/storage/v1/object/public/Media/VID_20260717_062254_670_bsl.mp4" controls playsinline style="display:none; width:100%; aspect-ratio:16/9; background:#000;"></video>
   </div>
 </div>
 
-<!-- WATCH PROGRESS CARD -->
+<!-- DISCOUNT BANNER (shown after 15s of watching) -->
+<div class="discount-banner" id="discountBanner">
+  <span class="discount-emoji">🎉</span>
+  <div class="discount-headline">You've got ₹200 OFF!</div>
+  <div class="discount-sub">Pay only <strong>₹299</strong> instead of <s>₹499</s> — exclusive video watcher discount!</div>
+</div>
+
+<!-- PROGRESS CARD -->
 <div class="progress-card" id="progressCard">
   <div class="progress-top">
     <span class="progress-label">Watched Progress</span>
@@ -626,81 +182,70 @@ footer {
   </div>
   <div class="progress-pct-row">
     <span class="progress-pct" id="watchedPct">0%</span>
-    <span class="progress-left" id="timeLeft">15s left</span>
+    <span class="progress-left" id="timeLeft">2:19:00 left</span>
   </div>
-  <div class="progress-lock">
-    <span class="lock-icon">&#128274;</span>
-    <span>Buy Now to grab the offer, price will be increased to ₹499, 16 copies left. <strong style="color:#e2e8f0;">FREE BONUSES</strong> worth &#x20B9;10,000+</span>
+  <div class="progress-lock" id="lockMsg">
+    <span>🔒</span>
+    <span>Watch video to unlock <strong style="color:#e2e8f0;">₹200 discount!</strong> Price: <strong style="color:#fbbf24;">₹299</strong> (was ₹499)</span>
   </div>
 </div>
 
-<!-- BONUSES (locked) -->
+<!-- BONUSES (always visible, no lock) -->
 <div class="bonuses-section">
   <div class="bonuses-header">
-    <span class="bonuses-title">&#127381; Free Bonuses</span>
-    <span class="bonuses-badge">Grab the offer</span>
+    <span class="bonuses-title">🎁 Free Bonuses</span>
+    <span class="bonuses-badge">Included</span>
   </div>
 
-  <div class="bonus-item locked">
-    <div class="bonus-icon">&#129302;</div>
+  <div class="bonus-item">
+    <div class="bonus-icon">🤖</div>
     <div class="bonus-text">
       <div class="bonus-name">AI Product Creation Blueprint</div>
       <div class="bonus-desc">Step-by-step system to create &amp; sell AI products</div>
     </div>
-    <div class="bonus-value">&#x20B9;1999</div>
-    <div class="bonus-lock-overlay">
-      <div class="lock-badge">&#128274; Locked</div>
-    </div>
+    <div class="bonus-value">₹1,999</div>
   </div>
 
-  <div class="bonus-item locked">
-    <div class="bonus-icon">&#128200;</div>
+  <div class="bonus-item">
+    <div class="bonus-icon">📈</div>
     <div class="bonus-text">
       <div class="bonus-name">Sales Script Mega Pack</div>
       <div class="bonus-desc">50+ proven scripts for WhatsApp, Insta &amp; Telegram</div>
     </div>
-    <div class="bonus-value">&#x20B9;1,999</div>
-    <div class="bonus-lock-overlay">
-      <div class="lock-badge">&#128274; Locked</div>
-    </div>
+    <div class="bonus-value">₹1,999</div>
   </div>
 
-  <div class="bonus-item locked">
-    <div class="bonus-icon">&#128194;</div>
+  <div class="bonus-item">
+    <div class="bonus-icon">📂</div>
     <div class="bonus-text">
       <div class="bonus-name">10 Done-For-You Templates</div>
       <div class="bonus-desc">Ready to launch digital products &mdash; just add your name</div>
     </div>
-    <div class="bonus-value">&#x20B9;3,499</div>
-    <div class="bonus-lock-overlay">
-      <div class="lock-badge">&#128274; Locked</div>
-    </div>
+    <div class="bonus-value">₹3,499</div>
   </div>
-
-  
+</div>
 
 <div class="section-divider"></div>
 
 <!-- BUY SECTION -->
 <div class="buy-section">
-  <div class="buy-eyebrow">&#9889; Ready to Start?</div>
+  <div class="buy-eyebrow">⚡ Ready to Start?</div>
   <div class="buy-title">AI Digital Products Selling System</div>
   <div class="buy-sub">One-time payment &bull; Instant Telegram delivery &bull; Lifetime access</div>
 
   <div class="price-row">
-    <span class="price-old">&#x20B9;4,999</span>
-    <span class="price-new">&#x20B9;999</span>
-    <span class="price-save">Save 80%</span>
+    <span class="price-old">₹499</span>
+    <span class="price-new">₹299</span>
+    <span class="price-save">Save 40%</span>
   </div>
 
-  <!-- REPLACE href WITH YOUR RAZORPAY PAYMENT LINK -->
   <a href="https://rzp.io/rzp/agy4kFW" class="btn-buy" target="_blank" rel="noopener">
-    &#128274; Pay &#x20B9;999 &amp; Get Instant Access &#9889;
+    🔒 Pay ₹299 &amp; Get Instant Access ⚡
   </a>
 
   <div class="btn-micro">
-    <div class="bm-item">&#128274; Razorpay Secured</div>
-    <div class="bm-item">&#127775; Lifetime Access</div>
+    <div class="bm-item">🔒 Razorpay Secured</div>
+    <div class="bm-item">✨ Lifetime Access</div>
   </div>
 </div>
 
@@ -708,12 +253,12 @@ footer {
 <div class="includes-section">
   <div class="inc-header">What's included</div>
   <div class="inc-list">
-    <div class="inc-item"><div class="inc-check">&#10003;</div><span>Complete AI Product Creation Blueprint (PDF)</span></div>
-    <div class="inc-item"><div class="inc-check">&#10003;</div><span>50+ Sales Scripts for WhatsApp, Instagram &amp; Telegram</span></div>
-    <div class="inc-item"><div class="inc-check">&#10003;</div><span>10 Done-For-You Digital Product Templates</span></div>
-    <div class="inc-item"><div class="inc-check">&#10003;</div><span>Private Telegram Group with Live Support</span></div>
-    <div class="inc-item"><div class="inc-check">&#10003;</div><span>Income &amp; Pricing Strategy Guide</span></div>
-    <div class="inc-item"><div class="inc-check">&#10003;</div><span>Lifetime Updates &mdash; All Future Resources Free</span></div>
+    <div class="inc-item"><div class="inc-check">✓</div><span>Complete AI Product Creation Blueprint (PDF)</span></div>
+    <div class="inc-item"><div class="inc-check">✓</div><span>50+ Sales Scripts for WhatsApp, Instagram &amp; Telegram</span></div>
+    <div class="inc-item"><div class="inc-check">✓</div><span>10 Done-For-You Digital Product Templates</span></div>
+    <div class="inc-item"><div class="inc-check">✓</div><span>Private Telegram Group with Live Support</span></div>
+    <div class="inc-item"><div class="inc-check">✓</div><span>Income &amp; Pricing Strategy Guide</span></div>
+    <div class="inc-item"><div class="inc-check">✓</div><span>Lifetime Updates &mdash; All Future Resources Free</span></div>
   </div>
 </div>
 
@@ -721,7 +266,7 @@ footer {
 
 <!-- HOW IT WORKS -->
 <div class="how-section">
-  <div class="how-title">&#128161; How delivery works</div>
+  <div class="how-title">💡 How delivery works</div>
   <div class="how-steps">
     <div class="how-step">
       <div class="how-num">1</div>
@@ -751,33 +296,21 @@ footer {
 
 <!-- TESTIMONIALS -->
 <div class="testi-section">
-  <div class="testi-title">&#11088; What students are saying</div>
-
+  <div class="testi-title">⭐ What students are saying</div>
   <div class="testi-card">
-    <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <div class="t-stars">★★★★★</div>
     <p class="t-text">"Paid via GPay and got the Telegram link in literally 10 seconds. The templates alone are worth 10x the price. Already made my money back in week 1."</p>
-    <div class="t-author">
-      <div class="t-av">RK</div>
-      <div><div class="t-name">Rahul Kumar</div><div class="t-meta">Freelancer, Delhi</div></div>
-    </div>
+    <div class="t-author"><div class="t-av">RK</div><div><div class="t-name">Rahul Kumar</div><div class="t-meta">Freelancer, Delhi</div></div></div>
   </div>
-
   <div class="testi-card">
-    <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+    <div class="t-stars">★★★★★</div>
     <p class="t-text">"Sold my first AI digital product within 3 days of joining. The sales scripts are insane. Bhai ne sab kuch step by step explain kiya."</p>
-    <div class="t-author">
-      <div class="t-av">PS</div>
-      <div><div class="t-name">Priya Sharma</div><div class="t-meta">Content Creator, Mumbai</div></div>
-    </div>
+    <div class="t-author"><div class="t-av">PS</div><div><div class="t-name">Priya Sharma</div><div class="t-meta">Content Creator, Mumbai</div></div></div>
   </div>
-
   <div class="testi-card">
-    <div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-    <p class="t-text">"The private Telegram group is super active. New resources every week and the community is genuinely helpful. Best &#x20B9;999 I've spent."</p>
-    <div class="t-author">
-      <div class="t-av">AV</div>
-      <div><div class="t-name">Arjun Verma</div><div class="t-meta">Student, Bangalore</div></div>
-    </div>
+    <div class="t-stars">★★★★★</div>
+    <p class="t-text">"The private Telegram group is super active. New resources every week and the community is genuinely helpful. Best ₹299 I've spent."</p>
+    <div class="t-author"><div class="t-av">AV</div><div><div class="t-name">Arjun Verma</div><div class="t-meta">Student, Bangalore</div></div></div>
   </div>
 </div>
 
@@ -785,34 +318,21 @@ footer {
 
 <!-- FAQ -->
 <div class="faq-section">
-  <div class="faq-title">&#10067; Frequently asked questions</div>
-
+  <div class="faq-title">❓ Frequently asked questions</div>
   <div class="faq-item open">
-    <div class="faq-q" onclick="toggleFaq(this)">
-      How will I receive the product after payment?
-      <span class="faq-arr">&#8964;</span>
-    </div>
+    <div class="faq-q" onclick="toggleFaq(this)">How will I receive the product after payment?<span class="faq-arr">⌄</span></div>
     <div class="faq-a">Immediately after Razorpay confirms your payment, you get a private Telegram link. Click it, join the group, and everything is there waiting for you. Under 30 seconds.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">
-      Is this a subscription or one-time payment?
-      <span class="faq-arr">&#8964;</span>
-    </div>
-    <div class="faq-a">100% one-time. Pay &#x20B9;999 once and get lifetime access to everything, including all future updates added to the group.</div>
+    <div class="faq-q" onclick="toggleFaq(this)">Is this a subscription or one-time payment?<span class="faq-arr">⌄</span></div>
+    <div class="faq-a">100% one-time. Pay ₹299 once and get lifetime access to everything, including all future updates added to the group.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">
-      I have zero experience. Will this work for me?
-      <span class="faq-arr">&#8964;</span>
-    </div>
+    <div class="faq-q" onclick="toggleFaq(this)">I have zero experience. Will this work for me?<span class="faq-arr">⌄</span></div>
     <div class="faq-a">Yes. This system is built for complete beginners. No technical skills, no audience, no prior experience needed. Everything is step by step.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-q" onclick="toggleFaq(this)">
-      Which payment methods are accepted?
-      <span class="faq-arr">&#8964;</span>
-    </div>
+    <div class="faq-q" onclick="toggleFaq(this)">Which payment methods are accepted?<span class="faq-arr">⌄</span></div>
     <div class="faq-a">All payments via Razorpay &mdash; UPI (GPay, PhonePe, Paytm), debit/credit card, and net banking. 100% encrypted and safe.</div>
   </div>
 </div>
@@ -820,16 +340,14 @@ footer {
 <!-- FINAL CTA -->
 <div class="final-section">
   <div class="final-title">Stop waiting. Start earning.</div>
-  <div class="final-sub">Pay once. Instant Telegram access. No guesswork.</div>
-  <!-- REPLACE href WITH YOUR RAZORPAY PAYMENT LINK -->
-  <a href="https://rzp.io/l/YOUR_PAYMENT_LINK_HERE" class="btn-buy" target="_blank" rel="noopener">
-    &#9889; Get Access Now for &#x20B9;999
+  <div class="final-sub">Pay ₹299 once. Instant Telegram access. No guesswork.</div>
+  <a href="https://rzp.io/rzp/agy4kFW" class="btn-buy" target="_blank" rel="noopener">
+    ⚡ Get Access Now for ₹299
   </a>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">NIKHIL AI &#9889;</div>
+  <div class="footer-logo">NIKHIL AI ⚡</div>
   <div class="footer-links">
     <a href="#">Privacy Policy</a>
     <a href="#">Refund Policy</a>
@@ -840,21 +358,21 @@ footer {
 </footer>
 
 <script>
-// ---- VIDEO PLAY ----
+// VIDEO PLAY
 function playVideo() {
-  const thumb = document.getElementById('videoThumb');
-  const iframe = document.getElementById('ytIframe');
-  // REPLACE dQw4w9WgXcQ with your actual YouTube video ID
-  iframe.src = iframe.getAttribute('data-src');
-  iframe.style.display = 'block';
+  var thumb = document.getElementById('videoThumb');
+  var video = document.getElementById('mainVideo');
+  video.style.display = 'block';
   thumb.style.display = 'none';
+  video.play();
   startProgress();
 }
 
-// ---- PROGRESS TRACKER ----
-let watchedSeconds = 0;
-const totalSeconds = 139 * 60; // 2h 19min = 139 min
-let progressInterval = null;
+// PROGRESS TRACKER
+var watchedSeconds = 0;
+var totalSeconds = 139 * 60;
+var progressInterval = null;
+var discountShown = false;
 
 function startProgress() {
   if (progressInterval) return;
@@ -862,48 +380,41 @@ function startProgress() {
     watchedSeconds += 1;
     if (watchedSeconds > totalSeconds) watchedSeconds = totalSeconds;
     updateProgressUI();
+    // Show discount banner after 15 seconds of watching
+    if (watchedSeconds >= 15 && !discountShown) {
+      discountShown = true;
+      showDiscountBanner();
+    }
   }, 1000);
 }
 
+function showDiscountBanner() {
+  var banner = document.getElementById('discountBanner');
+  banner.style.display = 'block';
+  // Update lock message too
+  document.getElementById('lockMsg').innerHTML = '<span>✅</span><span><strong style="color:#34d399;">₹200 discount unlocked!</strong> Pay only <strong style="color:#fbbf24;">₹299</strong> — scroll down to buy now!</span>';
+}
+
 function updateProgressUI() {
-  const pct = (watchedSeconds / totalSeconds) * 100;
+  var pct = (watchedSeconds / totalSeconds) * 100;
   document.getElementById('progressFill').style.width = pct.toFixed(1) + '%';
   document.getElementById('watchedPct').textContent = pct.toFixed(1) + '%';
   document.getElementById('watchedTime').textContent = formatTime(watchedSeconds) + ' / 2:19:00';
-  const left = totalSeconds - watchedSeconds;
+  var left = totalSeconds - watchedSeconds;
   document.getElementById('timeLeft').textContent = formatTime(left) + ' left';
-
-  // Unlock bonuses at 100%
-  if (pct >= 100) {
-    clearInterval(progressInterval);
-    unlockBonuses();
-  }
 }
 
 function formatTime(s) {
-  const h = Math.floor(s / 3600);
-  const m = Math.floor((s % 3600) / 60);
-  const sec = s % 60;
-  return h + ':' + String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+  var h = Math.floor(s / 3600);
+  var m = Math.floor((s % 3600) / 60);
+  var sec = s % 60;
+  return h + ':' + String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
 }
 
-function unlockBonuses() {
-  document.querySelectorAll('.bonus-item').forEach(function(el) {
-    el.classList.remove('locked');
-    const overlay = el.querySelector('.bonus-lock-overlay');
-    if (overlay) overlay.style.display = 'none';
-  });
-  document.querySelector('.bonuses-badge').textContent = 'UNLOCKED';
-  document.querySelector('.bonuses-badge').style.background = 'rgba(52,211,153,0.15)';
-  document.querySelector('.bonuses-badge').style.borderColor = 'rgba(52,211,153,0.3)';
-  document.querySelector('.bonuses-badge').style.color = '#34d399';
-  document.querySelector('.progress-lock').innerHTML = '<span>&#9989;</span> <strong style="color:#34d399;">All bonuses unlocked! Scroll down to buy.</strong>';
-}
-
-// ---- FAQ ----
+// FAQ
 function toggleFaq(el) {
-  const item = el.parentElement;
-  const isOpen = item.classList.contains('open');
+  var item = el.parentElement;
+  var isOpen = item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
   if (!isOpen) item.classList.add('open');
 }
