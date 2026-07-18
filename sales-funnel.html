@@ -358,6 +358,9 @@ footer { background: #0a0a12; border-top: 1px solid rgba(255,255,255,0.06); padd
 </footer>
 
 <script>
+var discountShown = false;
+var eventsAttached = false;
+
 // VIDEO PLAY
 function playVideo() {
   var thumb = document.getElementById('videoThumb');
@@ -365,51 +368,55 @@ function playVideo() {
   video.style.display = 'block';
   thumb.style.display = 'none';
   video.play();
-  startProgress();
+  if (!eventsAttached) {
+    eventsAttached = true;
+    attachVideoEvents(video);
+  }
 }
 
-// PROGRESS TRACKER
-var watchedSeconds = 0;
-var totalSeconds = 139 * 60;
-var progressInterval = null;
-var discountShown = false;
+function attachVideoEvents(video) {
+  // Real-time progress from actual video position
+  video.addEventListener('timeupdate', function() {
+    if (!video.duration || isNaN(video.duration)) return;
+    var cur = video.currentTime;
+    var dur = video.duration;
+    var pct = (cur / dur) * 100;
+    var left = dur - cur;
 
-function startProgress() {
-  if (progressInterval) return;
-  progressInterval = setInterval(function() {
-    watchedSeconds += 1;
-    if (watchedSeconds > totalSeconds) watchedSeconds = totalSeconds;
-    updateProgressUI();
-    // Show discount banner after 15 seconds of watching
-    if (watchedSeconds >= 15 && !discountShown) {
+    document.getElementById('progressFill').style.width = pct.toFixed(1) + '%';
+    document.getElementById('watchedPct').textContent = pct.toFixed(1) + '%';
+    document.getElementById('watchedTime').textContent = formatTime(Math.floor(cur)) + ' / ' + formatTime(Math.floor(dur));
+    document.getElementById('timeLeft').textContent = formatTime(Math.floor(left)) + ' left';
+
+    // Unlock after 15 seconds of actual watch time
+    if (cur >= 15 && !discountShown) {
       discountShown = true;
       showDiscountBanner();
     }
-  }, 1000);
+  });
+
+  video.addEventListener('ended', function() {
+    if (!discountShown) {
+      discountShown = true;
+      showDiscountBanner();
+    }
+  });
 }
 
 function showDiscountBanner() {
-  var banner = document.getElementById('discountBanner');
-  banner.style.display = 'block';
-  // Update lock message too
-  document.getElementById('lockMsg').innerHTML = '<span>✅</span><span><strong style="color:#34d399;">₹200 discount unlocked!</strong> Pay only <strong style="color:#fbbf24;">₹299</strong> — scroll down to buy now!</span>';
-}
-
-function updateProgressUI() {
-  var pct = (watchedSeconds / totalSeconds) * 100;
-  document.getElementById('progressFill').style.width = pct.toFixed(1) + '%';
-  document.getElementById('watchedPct').textContent = pct.toFixed(1) + '%';
-  document.getElementById('watchedTime').textContent = formatTime(watchedSeconds) + ' / 2:19:00';
-  var left = totalSeconds - watchedSeconds;
-  document.getElementById('timeLeft').textContent = formatTime(left) + ' left';
+  document.getElementById('discountBanner').style.display = 'block';
+  document.getElementById('lockMsg').innerHTML = '<span>&#9989;</span><span><strong style="color:#34d399;">Rs.200 discount unlocked!</strong> Pay only <strong style="color:#fbbf24;">Rs.299</strong> &mdash; scroll down to buy now!</span>';
 }
 
 function formatTime(s) {
   var h = Math.floor(s / 3600);
   var m = Math.floor((s % 3600) / 60);
   var sec = s % 60;
-  return h + ':' + String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+  if (h > 0) return h + ':' + pad(m) + ':' + pad(sec);
+  return pad(m) + ':' + pad(sec);
 }
+
+function pad(n) { return String(n).padStart(2, '0'); }
 
 // FAQ
 function toggleFaq(el) {
